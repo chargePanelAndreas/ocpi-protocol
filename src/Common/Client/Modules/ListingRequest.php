@@ -54,11 +54,6 @@ trait ListingRequest
         return $this->getUriParameter('offset', $response);
     }
 
-    public function getNextSmartPaging(ResponseInterface $response): ?string
-    {
-        return $this->getUriParameter('smart_paging', $response);
-    }
-
     public function getNextLimit(ResponseInterface $response): ?int
     {
         $limit = $this->getUriParameter('limit', $response);
