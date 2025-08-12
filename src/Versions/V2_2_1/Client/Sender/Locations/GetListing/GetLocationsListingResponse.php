@@ -63,6 +63,12 @@ class GetLocationsListingResponse extends BaseResponse
             }
         }
 
+        $nextSmartPaging = $request->getNextSmartPaging($response);
+        if ($nextSmartPaging !== null) {
+            $nextRequest = $nextRequest ?? (clone $request);
+            $nextRequest = $nextRequest->withSmartPaging($nextSmartPaging);
+        }
+
         $return->nextRequest = $nextRequest;
 
         return $return;
