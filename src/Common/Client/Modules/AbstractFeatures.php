@@ -58,8 +58,15 @@ class AbstractFeatures
 
     private static function forgeUri(UriInterface $baseUri, UriInterface $requestUri): UriInterface
     {
+        // Remove trailing slash
+        $normalizedPath = rtrim(
+            // Avoid double slash between baseUri and requestUri
+            rtrim($baseUri->getPath(), '/') . '/' . ltrim($requestUri->getPath(), '/'),
+            '/'
+        );
+        
         $uri = $requestUri
-            ->withPath($baseUri->getPath() . $requestUri->getPath())
+            ->withPath($normalizedPath)
             ->withScheme($baseUri->getScheme())
             ->withHost($baseUri->getHost());
 
