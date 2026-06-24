@@ -45,7 +45,10 @@ class TariffElement implements JsonSerializable
         ];
 
         if ($this->restrictions !== null) {
-            $return['restrictions'] = $this->restrictions;
+            $serializedRestrictions = $this->restrictions->jsonSerialize();
+            if (!empty($serializedRestrictions)) {
+                $return['restrictions'] = $serializedRestrictions;
+            }
         }
 
         return $return;
