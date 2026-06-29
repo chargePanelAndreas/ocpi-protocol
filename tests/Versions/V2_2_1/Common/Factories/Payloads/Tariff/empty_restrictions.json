@@ -1,0 +1,21 @@
+{
+  "country_code": "SE",
+  "party_id": "TES",
+  "id": "SE*TES*SE*001",
+  "currency": "SEK",
+  "type": "REGULAR",
+  "elements": [
+    {
+      "price_components": [
+        {
+          "type": "ENERGY",
+          "price": 3,
+          "step_size": 1,
+          "vat": 25
+        }
+      ],
+      "restrictions": []
+    }
+  ],
+  "last_updated": "2026-01-26T15:27:46Z"
+}

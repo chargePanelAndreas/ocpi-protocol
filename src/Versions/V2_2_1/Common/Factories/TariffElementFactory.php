@@ -17,7 +17,8 @@ class TariffElementFactory
             return null;
         }
 
-        $tariffElement = new TariffElement(TariffRestrictionsFactory::fromJson($json->restrictions ?? null));
+        $restrictions = ($json->restrictions ?? null) instanceof stdClass ? $json->restrictions : null;
+        $tariffElement = new TariffElement(TariffRestrictionsFactory::fromJson($restrictions));
 
         foreach ($json->price_components as $jsonPriceComponent) {
             $tariffElement->addPriceComponent(

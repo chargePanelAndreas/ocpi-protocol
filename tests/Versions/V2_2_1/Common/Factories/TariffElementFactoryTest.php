@@ -13,7 +13,8 @@ class TariffElementFactoryTest
         if($json === null){
             Assert::assertNull($tariffElement);
         } else {
-            TariffRestrictionsFactoryTest::assertTariffRestrictions($json->restrictions ?? null,$tariffElement->getRestrictions());
+            $restrictions = ($json->restrictions ?? null) instanceof stdClass ? $json->restrictions : null;
+            TariffRestrictionsFactoryTest::assertTariffRestrictions($restrictions, $tariffElement->getRestrictions());
 
             foreach ($tariffElement->getPriceComponents() as $index => $priceComponent){
                 PriceComponentsFactoryTest::assertPriceComponents($json->price_components[$index],$priceComponent);
