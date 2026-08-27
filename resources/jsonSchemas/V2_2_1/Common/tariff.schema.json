@@ -224,7 +224,7 @@
                             ],
                             "minimum": 0
                         },
-                        "min_congestrion_threshold": {
+                        "min_congestion_threshold": {
                             "type": [
                                 "integer",
                                 "null"
