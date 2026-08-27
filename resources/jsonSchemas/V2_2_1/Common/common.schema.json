@@ -577,7 +577,8 @@
                                     "POWER",
                                     "RESERVATION_TIME",
                                     "STATE_OF_CHARGE",
-                                    "TIME"
+                                    "TIME",
+                                    "CONGESTION_TIME"
                                 ]
                             },
                             "volume": {

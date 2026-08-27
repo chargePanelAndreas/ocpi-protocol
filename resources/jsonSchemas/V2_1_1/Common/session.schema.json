@@ -82,7 +82,9 @@
                 "ACTIVE",
                 "COMPLETED",
                 "INVALID",
-                "PENDING"
+                "PENDING",
+                "IDLING",
+                "CONGESTED"
             ]
         },
         "last_updated": {

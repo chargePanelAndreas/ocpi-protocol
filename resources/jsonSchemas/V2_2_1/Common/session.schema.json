@@ -106,7 +106,9 @@
                 "COMPLETED",
                 "INVALID",
                 "PENDING",
-                "RESERVATION"
+                "RESERVATION",
+                "IDLING",
+                "CONGESTED"
             ]
         },
         "last_updated": {

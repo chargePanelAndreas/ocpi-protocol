@@ -18,4 +18,8 @@ class SessionStatus extends Enum
     public const COMPLETED = 'COMPLETED';
     public const INVALID = 'INVALID';
     public const PENDING = 'PENDING';
+
+    // Tesla specific session statuses
+    public const CONGESTED = 'CONGESTED';
+    public const IDLING = 'IDLING';
 }
