@@ -20,4 +20,8 @@ class SessionStatus extends Enum
     public const INVALID = 'INVALID';
     public const PENDING = 'PENDING';
     public const RESERVATION = 'RESERVATION';
+
+    // Tesla specific session statuses
+    public const CONGESTED = 'CONGESTED';
+    public const IDLING = 'IDLING';
 }

@@ -187,7 +187,8 @@
                                 "ENERGY",
                                 "FLAT",
                                 "PARKING_TIME",
-                                "TIME"
+                                "TIME",
+                                "CONGESTION_TIME"
                             ]
                         },
                         "price": {

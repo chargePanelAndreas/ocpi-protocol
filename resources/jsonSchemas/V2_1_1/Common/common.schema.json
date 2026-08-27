@@ -421,7 +421,8 @@
                                     "MAX_CURRENT",
                                     "MIN_CURRENT",
                                     "PARKING_TIME",
-                                    "TIME"
+                                    "TIME",
+                                    "CONGESTION_TIME"
                                 ]
                             },
                             "volume": {
