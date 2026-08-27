@@ -217,6 +217,20 @@
                             ],
                             "minimum": 0
                         },
+                        "min_vehicle_soc": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "min_congestrion_threshold": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
                         "day_of_week": {
                             "type": [
                                 "array",

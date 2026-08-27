@@ -18,4 +18,7 @@ class TariffDimensionType extends Enum
     public const FLAT = 'FLAT';
     public const PARKING_TIME = 'PARKING_TIME';
     public const TIME = 'TIME';
+
+    // Tesla specific dimension type
+    public const CONGESTION_TIME = 'CONGESTION_TIME';
 }

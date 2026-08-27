@@ -28,6 +28,10 @@ class TariffRestrictions implements JsonSerializable
 
     private ?int $maxDuration;
 
+    private ?int $minVehicleSoc;
+
+    private ?int $minCongestrionThreshold;
+
     /** @var DayOfWeek[] */
     private array $daysOfWeek = [];
 
@@ -41,7 +45,9 @@ class TariffRestrictions implements JsonSerializable
         ?float $minPower,
         ?float $maxPower,
         ?int $minDuration,
-        ?int $maxDuration
+        ?int $maxDuration,
+        ?int $minVehicleSoc,
+        ?int $minCongestrionThreshold
     )
     {
         $this->startTime = $startTime;
@@ -54,6 +60,8 @@ class TariffRestrictions implements JsonSerializable
         $this->maxPower = $maxPower;
         $this->minDuration = $minDuration;
         $this->maxDuration = $maxDuration;
+        $this->minVehicleSoc = $minVehicleSoc;
+        $this->minCongestrionThreshold = $minCongestrionThreshold;
     }
 
     public function getStartTime(): ?string
@@ -106,6 +114,16 @@ class TariffRestrictions implements JsonSerializable
         return $this->maxDuration;
     }
 
+    public function getMinVehicleSoc(): ?int
+    {
+        return $this->minVehicleSoc;
+    }
+
+    public function getMinCongestrionThreshold(): ?int
+    {
+        return $this->minCongestrionThreshold;
+    }
+
     /**
      * @return DayOfWeek[]
      */
@@ -156,6 +174,12 @@ class TariffRestrictions implements JsonSerializable
         }
         if ($this->maxDuration !== null) {
             $return['max_duration'] = $this->maxDuration;
+        }
+        if ($this->minVehicleSoc !== null) {
+            $return['min_vehicle_soc'] = $this->minVehicleSoc;
+        }
+        if ($this->minCongestrionThreshold !== null) {
+            $return['min_congestrion_threshold'] = $this->minCongestrionThreshold;
         }
 
         return $return;

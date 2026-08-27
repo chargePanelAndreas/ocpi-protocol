@@ -32,6 +32,10 @@ class TariffRestrictions implements JsonSerializable
 
     private ?int $maxDuration;
 
+    private ?int $minVehicleSoc;
+
+    private ?int $minCongestrionThreshold;
+
     private ?ReservationRestrictionType $reservation;
 
     /** @var DayOfWeek[] */
@@ -50,6 +54,8 @@ class TariffRestrictions implements JsonSerializable
         ?float $maxPower,
         ?int $minDuration,
         ?int $maxDuration,
+        ?int $minVehicleSoc,
+        ?int $minCongestrionThreshold,
         ?ReservationRestrictionType $reservation
     )
     {
@@ -65,6 +71,8 @@ class TariffRestrictions implements JsonSerializable
         $this->maxPower = $maxPower;
         $this->minDuration = $minDuration;
         $this->maxDuration = $maxDuration;
+        $this->minVehicleSoc = $minVehicleSoc;
+        $this->minCongestrionThreshold = $minCongestrionThreshold;
         $this->reservation = $reservation;
     }
 
@@ -126,6 +134,16 @@ class TariffRestrictions implements JsonSerializable
     public function getMaxDuration(): ?int
     {
         return $this->maxDuration;
+    }
+
+    public function getMinVehicleSoc(): ?int
+    {
+        return $this->minVehicleSoc;
+    }
+
+    public function getMinCongestrionThreshold(): ?int
+    {
+        return $this->minCongestrionThreshold;
     }
 
     /**
@@ -190,6 +208,12 @@ class TariffRestrictions implements JsonSerializable
         }
         if ($this->maxDuration !== null) {
             $return['max_duration'] = $this->maxDuration;
+        }
+        if ($this->minVehicleSoc !== null) {
+            $return['min_vehicle_soc'] = $this->minVehicleSoc;
+        }
+        if ($this->minCongestrionThreshold !== null) {
+            $return['min_congestrion_threshold'] = $this->minCongestrionThreshold;
         }
         if ($this->reservation !== null) {
             $return['reservation'] = $this->reservation;
