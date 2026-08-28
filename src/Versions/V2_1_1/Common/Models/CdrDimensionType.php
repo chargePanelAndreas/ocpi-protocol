@@ -22,4 +22,7 @@ class CdrDimensionType extends Enum
     public const MIN_CURRENT = 'MIN_CURRENT';
     public const PARKING_TIME = 'PARKING_TIME';
     public const TIME = 'TIME';
+
+    // Tesla specific dimension types
+    public const CONGESTION_TIME = 'CONGESTION_TIME';
 }

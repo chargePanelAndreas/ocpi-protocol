@@ -36,4 +36,7 @@ class CdrDimensionType extends Enum
     public const RESERVATION_TIME = 'RESERVATION_TIME';
     public const STATE_OF_CHARGE = 'STATE_OF_CHARGE';
     public const TIME = 'TIME';
+
+    // Tesla specific dimension types
+    public const CONGESTION_TIME = 'CONGESTION_TIME';
 }
