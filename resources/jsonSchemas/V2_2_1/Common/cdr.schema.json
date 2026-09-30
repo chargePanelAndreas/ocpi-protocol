@@ -214,7 +214,10 @@
                     }
                 },
                 "url": {
-                    "type": "string",
+                    "type": [
+                      "null",
+                      "string"
+                    ],
                     "minLength": 1,
                     "maxLength": 412
                 }
