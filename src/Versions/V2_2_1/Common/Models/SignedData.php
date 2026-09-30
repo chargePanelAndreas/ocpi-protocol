@@ -10,9 +10,9 @@ class SignedData implements JsonSerializable
 {
     private string $encodingMethod;
 
-    private int $encodingMethodVersion;
+    private ?int $encodingMethodVersion;
 
-    private string $publicKey;
+    private ?string $publicKey;
 
     /** @var SignedValue[] */
     private array $signedValues = [];
@@ -21,8 +21,8 @@ class SignedData implements JsonSerializable
 
     public function __construct(
         string $encodingMethod,
-        int $encodingMethodVersion,
-        string $publicKey,
+        ?int $encodingMethodVersion,
+        ?string $publicKey,
         ?string $url
     )
     {
@@ -43,11 +43,11 @@ class SignedData implements JsonSerializable
         return $this->encodingMethod;
     }
 
-    public function getEncodingMethodVersion(): int {
+    public function getEncodingMethodVersion(): ?int {
         return $this->encodingMethodVersion;
     }
 
-    public function getPublicKey(): string {
+    public function getPublicKey(): ?string {
         return $this->publicKey;
     }
 
@@ -55,7 +55,7 @@ class SignedData implements JsonSerializable
         return $this->signedValues;
     }
 
-    public function getUrl(): string {
+    public function getUrl(): ?string {
         return $this->url;
     }
 
@@ -63,10 +63,19 @@ class SignedData implements JsonSerializable
     {
         $return = [
             'encoding_method' => $this->encodingMethod,
-            'encoding_method_version' => $this->encodingMethodVersion,
-            'public_key' => $this->publicKey,
-            'url' => $this->url
         ];
+
+        if ($this->encodingMethodVersion !== null) {
+            $return['encoding_method_version'] = $this->encodingMethodVersion;
+        }
+
+        if ($this->publicKey !== null) {
+            $return['public_key'] = $this->publicKey;
+        }
+
+        if ($this->url !== null) {
+            $return['url'] = $this->url;
+        }
 
         if (count($this->signedValues) > 0) {
             $return['signed_values'] = $this->signedValues;
