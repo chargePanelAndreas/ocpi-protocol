@@ -1,0 +1,21 @@
+{
+    "title": "V2.3.0\\Version",
+    "type": "object",
+    "properties": {
+        "version": {
+            "$ref": "common.schema.json#/definitions/version"
+        },
+        "endpoints": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "common.schema.json#/definitions/endpoint"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "version",
+        "endpoints"
+    ]
+}

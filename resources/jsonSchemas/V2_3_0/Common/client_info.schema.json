@@ -1,0 +1,39 @@
+{
+    "title": "V2.3.0\\Common\\ClientInfo",
+    "type": "object",
+    "properties": {
+        "party_id": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+        },
+        "country_code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "role": {
+            "$ref": "common.schema.json#/definitions/role"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "CONNECTED",
+                "OFFLINE",
+                "PLANNED",
+                "SUSPENDED"
+            ]
+        },
+        "last_updated": {
+            "$ref": "common.schema.json#/definitions/timestamp"
+        }
+    },
+    "required": [
+        "party_id",
+        "country_code",
+        "role",
+        "status",
+        "last_updated"
+    ],
+    "additionalProperties": false
+}

@@ -1,0 +1,326 @@
+{
+    "title": "V2.3.0\\Tariff",
+    "type": "object",
+    "properties": {
+        "country_code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "party_id": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+        },
+        "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 36
+        },
+        "currency": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+        },
+        "type": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "common.schema.json#/definitions/tariff_type"
+                }
+            ]
+        },
+        "tariff_alt_text": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "common.schema.json#/definitions/display_text"
+            }
+        },
+        "tariff_alt_url": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri"
+        },
+        "min_price": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "common.schema.json#/definitions/price_limit"
+                }
+            ]
+        },
+        "max_price": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "common.schema.json#/definitions/price_limit"
+                }
+            ]
+        },
+        "preauthorize_amount": {
+            "type": [
+                "number",
+                "null"
+            ]
+        },
+        "tax_included": {
+            "type": "string",
+            "enum": [
+                "YES",
+                "NO",
+                "N/A"
+            ]
+        },
+        "elements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/tariff_element"
+            }
+        },
+        "start_date_time": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            ]
+        },
+        "end_date_time": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            ]
+        },
+        "energy_mix": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "common.schema.json#/definitions/energy_mix"
+                }
+            ]
+        },
+        "last_updated": {
+            "$ref": "common.schema.json#/definitions/timestamp"
+        }
+    },
+    "required": [
+        "country_code",
+        "party_id",
+        "id",
+        "currency",
+        "elements",
+        "tax_included",
+        "last_updated"
+    ],
+    "additionalProperties": false,
+    "definitions": {
+        "tariff_element": {
+            "type": "object",
+            "properties": {
+                "price_components": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/tariff_element/definitions/price_component"
+                    }
+                },
+                "restrictions": {
+                    "type": [
+                        "object",
+                        "null"
+                    ],
+                    "properties": {
+                        "start_time": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
+                        },
+                        "end_time": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$"
+                        },
+                        "start_date": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "pattern": "^([12][0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "end_date": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "pattern": "^([12][0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+                        },
+                        "min_kwh": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "max_kwh": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "min_current": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "max_current": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "min_power": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "max_power": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "min_duration": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "max_duration": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "day_of_week": {
+                            "type": [
+                                "array",
+                                "null"
+                            ],
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "MONDAY",
+                                    "TUESDAY",
+                                    "WEDNESDAY",
+                                    "THURSDAY",
+                                    "FRIDAY",
+                                    "SATURDAY",
+                                    "SUNDAY"
+                                ]
+                            }
+                        },
+                        "reservation": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "enum": [
+                                "RESERVATION",
+                                "RESERVATION_EXPIRES",
+                                null
+                            ]
+                        },
+                        "booking": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "enum": [
+                                "BOOKING",
+                                "BOOKING_EXPIRES",
+                                "BOOKING_CANCELLATION_FEES",
+                                "BOOKING_OVERTIME",
+                                null
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "price_components"
+            ],
+            "additionalProperties": false,
+            "definitions": {
+                "price_component": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "ENERGY",
+                                "FLAT",
+                                "PARKING_TIME",
+                                "TIME"
+                            ]
+                        },
+                        "price": {
+                            "type": "number",
+                            "minimum": 0
+                        },
+                        "vat": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "step_size": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "price",
+                        "step_size"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        }
+    }
+}

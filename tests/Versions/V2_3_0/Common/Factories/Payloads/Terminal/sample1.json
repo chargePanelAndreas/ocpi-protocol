@@ -1,0 +1,24 @@
+{
+  "terminal_id": "TERM1",
+  "customer_reference": "cust",
+  "party_id": "CPO",
+  "country_code": "NL",
+  "address": "Street 1",
+  "city": "Amsterdam",
+  "postal_code": "1000AA",
+  "country": "NLD",
+  "coordinates": {
+    "latitude": "52.370216",
+    "longitude": "4.895168"
+  },
+  "invoice_base_url": "https://example.org/invoice",
+  "invoice_creator": "PTP",
+  "reference": "SN1",
+  "location_ids": [
+    "LOC1"
+  ],
+  "evse_uids": [
+    "evse1"
+  ],
+  "last_updated": "2026-01-01T10:00:00.000Z"
+}

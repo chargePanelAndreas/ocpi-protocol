@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Sender\\Payments\\Terminal\\Activate",
+    "oneOf": [
+        {
+            "$ref": "../../Common/payments.schema.json#/definitions/terminal_activation"
+        }
+    ]
+}

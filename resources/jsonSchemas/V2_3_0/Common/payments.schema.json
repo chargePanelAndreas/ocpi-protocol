@@ -1,0 +1,386 @@
+{
+    "title": "V2.3.0\\Common\\Payments",
+    "definitions": {
+        "terminal": {
+            "type": "object",
+            "properties": {
+                "terminal_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "customer_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "party_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "country_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "address": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 45
+                },
+                "city": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 45
+                },
+                "postal_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 10
+                },
+                "state": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 20
+                },
+                "country": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "coordinates": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "common.schema.json#/definitions/geo_location"
+                        }
+                    ]
+                },
+                "invoice_base_url": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "format": "uri"
+                },
+                "invoice_creator": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/invoice_creator"
+                        }
+                    ]
+                },
+                "reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "location_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "evse_uids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "terminal_id",
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "terminal_patch": {
+            "type": "object",
+            "properties": {
+                "location_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "evse_uids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "financial_advice_confirmation": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "authorization_reference": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "total_costs": {
+                    "$ref": "common.schema.json#/definitions/price"
+                },
+                "currency": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "eft_data": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    }
+                },
+                "capture_status_code": {
+                    "$ref": "#/definitions/capture_status_code"
+                },
+                "capture_status_message": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 255
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "id",
+                "authorization_reference",
+                "total_costs",
+                "currency",
+                "eft_data",
+                "capture_status_code",
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "terminal_activation": {
+            "type": "object",
+            "properties": {
+                "terminal_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "customer_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "party_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 3
+                },
+                "country_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 2
+                },
+                "address": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 45
+                },
+                "city": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 45
+                },
+                "postal_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 10
+                },
+                "state": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 20
+                },
+                "country": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 3
+                },
+                "coordinates": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "common.schema.json#/definitions/geo_location"
+                        }
+                    ]
+                },
+                "invoice_base_url": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "format": "uri"
+                },
+                "invoice_creator": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/invoice_creator"
+                        }
+                    ]
+                },
+                "reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "location_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "evse_uids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "invoice_creator": {
+            "type": "string",
+            "enum": [
+                "CPO",
+                "PTP"
+            ]
+        },
+        "capture_status_code": {
+            "type": "string",
+            "enum": [
+                "SUCCESS",
+                "PARTIAL_SUCCESS",
+                "FAILED"
+            ]
+        }
+    }
+}

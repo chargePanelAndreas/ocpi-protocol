@@ -1,0 +1,1009 @@
+{
+    "title": "V2.3.0\\Common\\Bookings",
+    "definitions": {
+        "booking": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "country_code": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "party_id": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "request_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_option": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_option"
+                        }
+                    ]
+                },
+                "location_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_tokens": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/booking_token"
+                    }
+                },
+                "tariff_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "period": {
+                    "$ref": "#/definitions/timeslot"
+                },
+                "reservation_status": {
+                    "$ref": "#/definitions/reservation_status"
+                },
+                "canceled": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/cancellation"
+                        }
+                    ]
+                },
+                "access_information": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/access_information"
+                    }
+                },
+                "authorization_reference": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_terms": {
+                    "$ref": "#/definitions/booking_terms"
+                },
+                "booking_requests": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/booking_request_status"
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "id",
+                "country_code",
+                "party_id",
+                "request_id",
+                "location_id",
+                "period",
+                "reservation_status",
+                "authorization_reference",
+                "booking_terms",
+                "booking_requests",
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "booking_location": {
+            "type": "object",
+            "properties": {
+                "country_code": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "party_id": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "location_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_option": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_option"
+                        }
+                    ]
+                },
+                "policy": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/policy"
+                        }
+                    ]
+                },
+                "tariff_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "booking_terms": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_terms"
+                        }
+                    ]
+                },
+                "calendars": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/calendar"
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "country_code",
+                "party_id",
+                "id",
+                "location_id",
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "calendar": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "begin_from": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                },
+                "end_before": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                },
+                "timeslot_increment": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "available_timeslots": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/timeslot"
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "id",
+                "begin_from",
+                "end_before",
+                "available_timeslots",
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "timeslot": {
+            "type": "object",
+            "properties": {
+                "start_date_time": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                },
+                "end_date_time": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                },
+                "min_power": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "max_power": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "green_energy_support": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "start_date_time",
+                "end_date_time"
+            ],
+            "additionalProperties": false
+        },
+        "period": {
+            "type": "object",
+            "properties": {
+                "start_date_time": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                },
+                "end_date_time": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "start_date_time",
+                "end_date_time"
+            ],
+            "additionalProperties": false
+        },
+        "booking_request": {
+            "type": "object",
+            "properties": {
+                "country_code": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "party_id": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "request_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_option": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_option"
+                        }
+                    ]
+                },
+                "location_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_location_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "tokens": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/booking_token"
+                    }
+                },
+                "access_information": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/access_information"
+                    }
+                },
+                "period": {
+                    "$ref": "#/definitions/period"
+                },
+                "authorization_reference": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "power_required": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "canceled": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/cancellation"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "country_code",
+                "party_id",
+                "request_id",
+                "location_id",
+                "booking_location_id",
+                "period",
+                "authorization_reference"
+            ],
+            "additionalProperties": false
+        },
+        "booking_request_status": {
+            "type": "object",
+            "properties": {
+                "request_status": {
+                    "$ref": "#/definitions/reservation_request_status"
+                },
+                "booking_request": {
+                    "$ref": "#/definitions/booking_request"
+                },
+                "request_received": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "request_status",
+                "booking_request",
+                "request_received"
+            ],
+            "additionalProperties": false
+        },
+        "booking_option": {
+            "type": "object",
+            "properties": {
+                "evse_uid": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "connector_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "parking_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "evse_position": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "common.schema.json#/definitions/evse_position"
+                    }
+                },
+                "vehicle_types": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "common.schema.json#/definitions/vehicle_type"
+                    }
+                },
+                "connector_format": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "connector.schema.json#/properties/format"
+                    }
+                },
+                "connector_types": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "connector.schema.json#/properties/standard"
+                    }
+                },
+                "power_types": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "connector.schema.json#/properties/power_type"
+                    }
+                },
+                "max_vehicle_weight": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "max_vehicle_height": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "max_vehicle_length": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "max_vehicle_width": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "min_parking_space_length": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "min_parking_space_width": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "dangerous_goods_allowed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "drive_through": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "refrigeration_outlet": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "booking_token": {
+            "type": "object",
+            "properties": {
+                "country_code": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "party_id": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 3
+                },
+                "uid": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "type": {
+                    "$ref": "token.schema.json#/properties/type"
+                },
+                "contract_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 36
+                }
+            },
+            "required": [
+                "country_code",
+                "party_id",
+                "uid",
+                "type",
+                "contract_id"
+            ],
+            "additionalProperties": false
+        },
+        "booking_terms": {
+            "type": "object",
+            "properties": {
+                "rfid_auth_required": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "token_groups_supported": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "remote_auth_supported": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "supported_access_methods": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/access_method"
+                    }
+                },
+                "change_until_minutes": {
+                    "type": "number"
+                },
+                "cancel_until_minutes": {
+                    "type": "number"
+                },
+                "change_not_allowed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "early_start_allowed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "early_start_time": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "noshow_timeout": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "noshow_fee": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "late_stop_allowed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "late_stop_time": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "overlapping_bookings_allowed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "min_booking_duration": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "max_booking_duration": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "booking_terms": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "supported_access_methods",
+                "change_until_minutes",
+                "cancel_until_minutes"
+            ],
+            "additionalProperties": false
+        },
+        "access_information": {
+            "type": "object",
+            "properties": {
+                "method": {
+                    "$ref": "#/definitions/access_method"
+                },
+                "value": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "method"
+            ],
+            "additionalProperties": false
+        },
+        "access_method": {
+            "type": "string",
+            "enum": [
+                "OPEN",
+                "TOKEN",
+                "LICENSE_PLATE",
+                "ACCESS_CODE",
+                "INTERCOM",
+                "PARKING_TICKET"
+            ]
+        },
+        "cancellation": {
+            "type": "object",
+            "properties": {
+                "cancellation_reason": {
+                    "$ref": "#/definitions/canceled_reason"
+                },
+                "who_canceled": {
+                    "$ref": "common.schema.json#/definitions/role"
+                }
+            },
+            "required": [
+                "cancellation_reason",
+                "who_canceled"
+            ],
+            "additionalProperties": false
+        },
+        "canceled_reason": {
+            "type": "string",
+            "enum": [
+                "POWER_OUTAGE",
+                "BROKEN_CHARGER",
+                "FULL",
+                "BLOCKED",
+                "TRAFFIC",
+                "BROKEN_VEHICLE",
+                "NO_CANCELED",
+                "UNKNOWN"
+            ]
+        },
+        "policy": {
+            "type": "object",
+            "properties": {
+                "reservation_required": {
+                    "type": "boolean"
+                },
+                "ad_hoc": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "reservation_required"
+            ],
+            "additionalProperties": false
+        },
+        "reservation_status": {
+            "type": "string",
+            "enum": [
+                "PENDING",
+                "RESERVED",
+                "CANCELED",
+                "FAILED",
+                "NO_SHOW",
+                "FULFILLED",
+                "REJECTED",
+                "UNKNOWN"
+            ]
+        },
+        "reservation_request_status": {
+            "type": "string",
+            "enum": [
+                "PENDING",
+                "ACCEPTED",
+                "DECLINED",
+                "FAILED"
+            ]
+        },
+        "booking_location_patch": {
+            "type": "object",
+            "properties": {
+                "booking_option": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_option"
+                        }
+                    ]
+                },
+                "policy": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/policy"
+                        }
+                    ]
+                },
+                "tariff_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "booking_terms": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_terms"
+                        }
+                    ]
+                },
+                "calendars": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/calendar"
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "booking_patch": {
+            "type": "object",
+            "properties": {
+                "booking_option": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_option"
+                        }
+                    ]
+                },
+                "location_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_tokens": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/booking_token"
+                    }
+                },
+                "tariff_ids": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    }
+                },
+                "period": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/timeslot"
+                        }
+                    ]
+                },
+                "reservation_status": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/reservation_status"
+                        }
+                    ]
+                },
+                "canceled": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/cancellation"
+                        }
+                    ]
+                },
+                "access_information": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/access_information"
+                    }
+                },
+                "authorization_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 36
+                },
+                "booking_terms": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/booking_terms"
+                        }
+                    ]
+                },
+                "booking_requests": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/booking_request_status"
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "last_updated"
+            ],
+            "additionalProperties": false
+        },
+        "calendar_patch": {
+            "type": "object",
+            "properties": {
+                "begin_from": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "common.schema.json#/definitions/timestamp"
+                        }
+                    ]
+                },
+                "end_before": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "common.schema.json#/definitions/timestamp"
+                        }
+                    ]
+                },
+                "timeslot_increment": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "available_timeslots": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/timeslot"
+                    }
+                },
+                "last_updated": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                }
+            },
+            "required": [
+                "last_updated"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

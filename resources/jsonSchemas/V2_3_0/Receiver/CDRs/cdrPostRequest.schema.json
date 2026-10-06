@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Emsp\\Server\\Cdrs\\Post",
+    "oneOf": [
+        {
+            "$ref": "../../Common/cdr.schema.json"
+        }
+    ]
+}

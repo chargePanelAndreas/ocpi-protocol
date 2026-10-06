@@ -1,0 +1,62 @@
+{
+  "country_code": "NL",
+  "party_id": "CPO",
+  "id": "BL1",
+  "location_id": "LOC1",
+  "booking_option": {
+    "evse_uid": "evse1",
+    "connector_id": "1",
+    "evse_position": [
+      "LEFT"
+    ],
+    "vehicle_types": [
+      "PERSONAL_VEHICLE",
+      "FUTURE_VEHICLE"
+    ],
+    "connector_types": [
+      "IEC_62196_T2",
+      "SAE_J3400"
+    ],
+    "power_types": [
+      "AC_3_PHASE"
+    ],
+    "max_vehicle_weight": 3500.5
+  },
+  "policy": {
+    "reservation_required": true,
+    "ad_hoc": 2
+  },
+  "tariff_ids": [
+    "T1"
+  ],
+  "booking_terms": {
+    "rfid_auth_required": false,
+    "supported_access_methods": [
+      "OPEN",
+      "TOKEN"
+    ],
+    "change_until_minutes": 30,
+    "cancel_until_minutes": 60,
+    "noshow_fee": true,
+    "booking_terms": "https://example.org/terms"
+  },
+  "calendars": [
+    {
+      "id": "C1",
+      "begin_from": "2026-01-01T10:00:00.000Z",
+      "end_before": "2026-01-02T10:00:00.000Z",
+      "timeslot_increment": 15,
+      "available_timeslots": [
+        {
+          "start_date_time": "2026-01-01T10:00:00.000Z",
+          "end_date_time": "2026-01-01T11:00:00.000Z",
+          "min_power": 3700,
+          "max_power": 11000,
+          "green_energy_support": true
+        }
+      ],
+      "last_updated": "2026-01-01T10:00:00.000Z"
+    }
+  ],
+  "last_updated": "2026-01-01T10:00:00.000Z"
+}

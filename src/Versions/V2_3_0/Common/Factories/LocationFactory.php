@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Chargemap\OCPI\Versions\V2_3_0\Common\Factories;
+
+use Chargemap\OCPI\Versions\V2_3_0\Common\Models\AdditionalGeoLocation;
+use Chargemap\OCPI\Versions\V2_3_0\Common\Models\Facility;
+use Chargemap\OCPI\Versions\V2_3_0\Common\Models\GeoLocation;
+use Chargemap\OCPI\Versions\V2_3_0\Common\Models\Location;
+use Chargemap\OCPI\Versions\V2_3_0\Common\Models\ParkingType;
+use DateTime;
+use stdClass;
+
+class LocationFactory
+{
+    public static function fromJson(?stdClass $json): ?Location
+    {
+        if ($json === null) {
+            return null;
+        }
+
+        $location = new Location(
+            $json->country_code,
+            $json->party_id,
+            $json->id,
+            $json->publish,
+            $json->name ?? null,
+            $json->address,
+            $json->city,
+            $json->postal_code ?? null,
+            $json->state ?? null,
+            $json->country,
+            GeoLocationFactory::fromJson($json->coordinates),
+            isset($json->parking_type) ? new ParkingType($json->parking_type) : null,
+            BusinessDetailsFactory::fromJson($json->operator ?? null),
+            BusinessDetailsFactory::fromJson($json->suboperator ?? null),
+            BusinessDetailsFactory::fromJson($json->owner ?? null),
+            $json->time_zone,
+            HoursFactory::fromJson($json->opening_times ?? null),
+            $json->charging_when_closed ?? null,
+            EnergyMixFactory::fromJson($json->energy_mix ?? null),
+            new DateTime($json->last_updated),
+            $json->help_phone ?? null
+        );
+
+        if (property_exists($json, 'related_locations') && $json->related_locations !== null) {
+            foreach ($json->related_locations as $jsonRelatedLocation) {
+                $location->addRelatedLocation(AdditionalGeoLocationFactory::fromJson($jsonRelatedLocation));
+            }
+        }
+
+        if (property_exists($json, 'parking_places') && $json->parking_places !== null) {
+            foreach ($json->parking_places as $jsonParking) {
+                $location->addParkingPlace(ParkingFactory::fromJson($jsonParking));
+            }
+        }
+
+        if (property_exists($json, 'evses') && $json->evses !== null) {
+            foreach ($json->evses as $jsonEvse) {
+                $location->addEVSE(EVSEFactory::fromJson($jsonEvse));
+            }
+        }
+
+        if (property_exists($json, 'directions') && $json->directions !== null) {
+            foreach ($json->directions as $jsonDirection) {
+                $location->addDirection(DisplayTextFactory::fromJson($jsonDirection));
+            }
+        }
+
+        if (property_exists($json, 'facilities') && $json->facilities !== null) {
+            foreach ($json->facilities as $jsonFacility) {
+                $location->addFacility(new Facility($jsonFacility));
+            }
+        }
+
+        if (property_exists($json, 'images') && $json->images !== null) {
+            foreach ($json->images as $jsonImage) {
+                $location->addImage(ImageFactory::fromJson($jsonImage));
+            }
+        }
+
+        return $location;
+    }
+}

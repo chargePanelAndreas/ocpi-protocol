@@ -1,0 +1,49 @@
+{
+    "title": "V2.3.0\\Sender\\Locations\\Get",
+    "properties": {
+        "status_code": {
+            "$ref": "../../Common/common.schema.json#/definitions/status_code"
+        },
+        "status_message": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "../../Common/common.schema.json#/definitions/status_message"
+                }
+            ]
+        },
+        "data": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "../../Common/location.schema.json",
+                    "required": [
+                        "country_code",
+                        "party_id",
+                        "id",
+                        "publish",
+                        "address",
+                        "city",
+                        "country",
+                        "coordinates",
+                        "time_zone",
+                        "last_updated"
+                    ],
+                    "additionalProperties": false
+                }
+            ]
+        },
+        "timestamp": {
+            "$ref": "../../Common/common.schema.json#/definitions/timestamp"
+        }
+    },
+    "required": [
+        "status_code",
+        "timestamp"
+    ],
+    "additionalProperties": false
+}

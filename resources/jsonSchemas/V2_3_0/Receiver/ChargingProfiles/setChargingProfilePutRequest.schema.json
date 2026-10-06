@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Receiver\\ChargingProfiles\\SetChargingProfile\\Put",
+    "oneOf": [
+        {
+            "$ref": "../../Common/charging_profiles.schema.json#/definitions/set_charging_profile"
+        }
+    ]
+}

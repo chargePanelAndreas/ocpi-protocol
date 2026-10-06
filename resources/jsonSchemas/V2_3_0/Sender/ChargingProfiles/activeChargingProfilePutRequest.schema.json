@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Sender\\ChargingProfiles\\ActiveChargingProfile\\Put",
+    "oneOf": [
+        {
+            "$ref": "../../Common/charging_profiles.schema.json#/definitions/active_charging_profile"
+        }
+    ]
+}

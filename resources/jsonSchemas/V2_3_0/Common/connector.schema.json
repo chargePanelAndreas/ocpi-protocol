@@ -1,0 +1,75 @@
+{
+    "title": "V2.3.0\\Emsp\\Locations\\Evses\\Connectors\\Put",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 36
+        },
+        "standard": {
+            "type": "string",
+            "minLength": 1
+        },
+        "format": {
+            "type": "string",
+            "enum": [
+                "SOCKET",
+                "CABLE"
+            ]
+        },
+        "power_type": {
+            "type": "string",
+            "enum": [
+                "AC_1_PHASE",
+                "AC_2_PHASE",
+                "AC_2_PHASE_SPLIT",
+                "AC_3_PHASE",
+                "DC"
+            ]
+        },
+        "max_voltage": {
+            "type": "integer"
+        },
+        "max_amperage": {
+            "type": "integer"
+        },
+        "max_electric_power": {
+            "type": [
+                "integer",
+                "null"
+            ]
+        },
+        "tariff_ids": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 36
+            }
+        },
+        "terms_and_conditions": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri"
+        },
+        "capabilities": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "$ref": "common.schema.json#/definitions/connector_capability"
+            }
+        },
+        "last_updated": {
+            "$ref": "common.schema.json#/definitions/timestamp"
+        }
+    },
+    "additionalProperties": false
+}

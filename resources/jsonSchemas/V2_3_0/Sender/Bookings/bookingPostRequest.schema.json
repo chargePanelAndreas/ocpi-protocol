@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Sender\\Bookings\\Booking\\Post",
+    "oneOf": [
+        {
+            "$ref": "../../Common/bookings.schema.json#/definitions/booking_request"
+        }
+    ]
+}

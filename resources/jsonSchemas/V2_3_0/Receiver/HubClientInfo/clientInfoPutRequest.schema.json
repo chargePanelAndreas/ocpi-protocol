@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Receiver\\HubClientInfo\\ClientInfo\\Put",
+    "oneOf": [
+        {
+            "$ref": "../../Common/client_info.schema.json"
+        }
+    ]
+}

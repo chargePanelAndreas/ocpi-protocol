@@ -18,5 +18,8 @@
     <testsuite name="V2.2.1">
       <directory>tests/Versions/V2_2_1</directory>
     </testsuite>
+    <testsuite name="V2.3.0">
+      <directory>tests/Versions/V2_3_0</directory>
+    </testsuite>
   </testsuites>
 </phpunit>

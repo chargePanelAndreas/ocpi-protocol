@@ -1,0 +1,15 @@
+{
+    "before_taxes": 12.2,
+    "taxes": [
+        {
+            "name": "VAT",
+            "account_number": "FR123456",
+            "percentage": 20,
+            "amount": 2.44
+        },
+        {
+            "name": "Eco tax",
+            "amount": 0.5
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Receiver\\Payments\\Terminal\\Post",
+    "oneOf": [
+        {
+            "$ref": "../../Common/payments.schema.json#/definitions/terminal"
+        }
+    ]
+}

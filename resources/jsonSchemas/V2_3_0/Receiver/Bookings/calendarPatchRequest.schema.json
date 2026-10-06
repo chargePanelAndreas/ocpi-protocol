@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Receiver\\Bookings\\Calendar\\Patch",
+    "oneOf": [
+        {
+            "$ref": "../../Common/bookings.schema.json#/definitions/calendar_patch"
+        }
+    ]
+}

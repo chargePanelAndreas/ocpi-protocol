@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Receiver\\Bookings\\BookingLocation\\Patch",
+    "oneOf": [
+        {
+            "$ref": "../../Common/bookings.schema.json#/definitions/booking_location_patch"
+        }
+    ]
+}

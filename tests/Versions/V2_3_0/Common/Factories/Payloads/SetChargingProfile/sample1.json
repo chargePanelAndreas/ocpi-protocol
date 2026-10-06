@@ -1,0 +1,19 @@
+{
+  "charging_profile": {
+    "start_date_time": "2026-01-01T10:00:00.000Z",
+    "duration": 3600,
+    "charging_rate_unit": "A",
+    "min_charging_rate": 6.5,
+    "charging_profile_period": [
+      {
+        "start_period": 0,
+        "limit": 16.0
+      },
+      {
+        "start_period": 1800,
+        "limit": 10.5
+      }
+    ]
+  },
+  "response_url": "https://example.org/response/1"
+}

@@ -1,0 +1,28 @@
+{
+  "country_code": "FR",
+  "party_id": "ABC",
+  "request_id": "req1",
+  "location_id": "LOC1",
+  "booking_location_id": "BL1",
+  "tokens": [
+    {
+      "country_code": "FR",
+      "party_id": "ABC",
+      "uid": "UID1",
+      "type": "EMAID",
+      "contract_id": "FRABC123"
+    }
+  ],
+  "access_information": [
+    {
+      "method": "LICENSE_PLATE",
+      "value": "ABC12D"
+    }
+  ],
+  "period": {
+    "start_date_time": "2026-01-01T10:00:00.000Z",
+    "end_date_time": "2026-01-01T11:00:00.000Z"
+  },
+  "authorization_reference": "auth1",
+  "power_required": 11
+}

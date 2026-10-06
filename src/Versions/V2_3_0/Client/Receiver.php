@@ -1,0 +1,148 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Chargemap\OCPI\Versions\V2_3_0\Client;
+
+use Chargemap\OCPI\Common\Client\Modules\AbstractFeatures;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Bookings;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Payments;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\ChargingProfiles;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\HubClientInfo;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Cdrs;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Locations;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Tariffs;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Tokens;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Sessions;
+use Chargemap\OCPI\Versions\V2_3_0\Client\Receiver\Commands;
+
+class Receiver extends AbstractFeatures
+{
+    private Credentials $credentials;
+
+    private Sessions $sessions;
+
+    private Tokens $tokens;
+
+    private Versions $versions;
+
+    private Cdrs $cdrs;
+
+    private Commands $commands;
+
+    private Bookings $bookings;
+
+    private Payments $payments;
+
+    private ChargingProfiles $chargingProfiles;
+
+    private HubClientInfo $hubClientInfo;
+
+    public function credentials(): Credentials
+    {
+        if (!isset($this->credentials)) {
+            $this->credentials = new Credentials($this->ocpiConfiguration);
+        }
+
+        return $this->credentials;
+    }
+
+    public function tokens(): Tokens
+    {
+        if (!isset($this->tokens)) {
+            $this->tokens = new Tokens($this->ocpiConfiguration);
+        }
+
+        return $this->tokens;
+    }
+
+    public function sessions(): Sessions
+    {
+        if (!isset($this->sessions)) {
+            $this->sessions = new Sessions($this->ocpiConfiguration);
+        }
+
+        return $this->sessions;
+    }
+
+    public function versions(): Versions
+    {
+        if(!isset($this->versions)) {
+            $this->versions = new Versions($this->ocpiConfiguration);
+        }
+
+        return $this->versions;
+    }
+
+    public function cdrs(): Cdrs
+    {
+        if(!isset($this->cdrs)) {
+            $this->cdrs = new Cdrs($this->ocpiConfiguration);
+        }
+
+        return $this->cdrs;
+    }
+    
+    public function locations(): Locations
+    {
+        if(!isset($this->locations)) {
+            $this->locations = new Locations($this->ocpiConfiguration);
+        }
+
+        return $this->locations;
+    }    
+    
+    public function tariffs(): Tariffs
+    {
+        if(!isset($this->tariffs)) {
+            $this->tariffs = new Tariffs($this->ocpiConfiguration);
+        }
+
+        return $this->tariffs;
+    }
+
+    public function commands(): Commands
+    {
+        if (!isset($this->commands)) {
+            $this->commands = new Commands($this->ocpiConfiguration);
+        }
+
+        return $this->commands;
+    }
+
+    public function bookings(): Bookings
+    {
+        if (!isset($this->bookings)) {
+            $this->bookings = new Bookings($this->ocpiConfiguration);
+        }
+
+        return $this->bookings;
+    }
+
+    public function payments(): Payments
+    {
+        if (!isset($this->payments)) {
+            $this->payments = new Payments($this->ocpiConfiguration);
+        }
+
+        return $this->payments;
+    }
+
+    public function chargingProfiles(): ChargingProfiles
+    {
+        if (!isset($this->chargingProfiles)) {
+            $this->chargingProfiles = new ChargingProfiles($this->ocpiConfiguration);
+        }
+
+        return $this->chargingProfiles;
+    }
+
+    public function hubClientInfo(): HubClientInfo
+    {
+        if (!isset($this->hubClientInfo)) {
+            $this->hubClientInfo = new HubClientInfo($this->ocpiConfiguration);
+        }
+
+        return $this->hubClientInfo;
+    }
+}
