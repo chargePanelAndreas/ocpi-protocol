@@ -1,7 +1,7 @@
 {
   "status_code": 1000,
   "status_message": "Success",
-  "timestamp": "2021-03-19T15:35:28+01:00",
+  "timestamp": "2021-03-19T14:35:28Z",
   "data": {
     "country_code": "FR",
     "party_id": "FR1",

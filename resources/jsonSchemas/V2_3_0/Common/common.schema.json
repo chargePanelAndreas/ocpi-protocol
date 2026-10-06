@@ -75,7 +75,7 @@
         },
         "timestamp": {
             "type": "string",
-            "pattern": "^([0-9]{4})-(1[0-2]|0[0-9])-([0-2][0-9]|3[0-1])T([0-1][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9](\\.[\\d]{1,9})?(Z|[-+](0[0-9]|1[0-4]):[0-5][0-9])?$"
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{1,9})?Z?$"
         },
         "allowed_type": {
             "type": "string",
@@ -430,6 +430,16 @@
                 "REGULAR"
             ]
         },
+        "charging_preferences_response": {
+            "type": "string",
+            "enum": [
+                "ACCEPTED",
+                "DEPARTURE_REQUIRED",
+                "ENERGY_NEED_REQUIRED",
+                "NOT_POSSIBLE",
+                "PROFILE_TYPE_NOT_SUPPORTED"
+            ]
+        },
         "tariff_type": {
             "type": "string",
             "enum": [
@@ -566,7 +576,7 @@
             "type": "object",
             "properties": {
                 "start_date_time": {
-                    "type": "string"
+                    "$ref": "#/definitions/timestamp"
                 },
                 "dimensions": {
                     "type": "array",

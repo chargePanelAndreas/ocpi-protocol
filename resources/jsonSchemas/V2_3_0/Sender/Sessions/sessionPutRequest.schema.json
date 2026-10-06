@@ -1,0 +1,10 @@
+{
+    "title": "V2.3.0\\Sender\\Server\\Sessions\\Put",
+    "oneOf": [
+        {
+            "$ref": "../../Common/charging_preferences.schema.json"
+        }
+    ]
+}
+
+
