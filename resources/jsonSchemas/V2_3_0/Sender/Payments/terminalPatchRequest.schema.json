@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Sender\\Payments\\Terminal\\Patch",
+    "oneOf": [
+        {
+            "$ref": "../../Common/payments.schema.json#/definitions/terminal_patch"
+        }
+    ]
+}

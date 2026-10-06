@@ -1,0 +1,13 @@
+{
+    "title": "V2.3.0\\Receiver\\Tokens\\Patch",
+    "oneOf": [
+        {
+            "$ref": "../../Common/token.schema.json",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "required": [
+                "last_updated"
+            ]
+        }
+    ]
+}

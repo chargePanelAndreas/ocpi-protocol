@@ -1,0 +1,71 @@
+<?php
+
+namespace Tests\Chargemap\OCPI\Versions\V2_3_0\Common\Factories;
+
+use Chargemap\OCPI\Versions\V2_3_0\Common\Factories\TariffRestrictionsFactory;
+use Chargemap\OCPI\Versions\V2_3_0\Common\Models\TariffRestrictions;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
+use stdClass;
+
+class TariffRestrictionsFactoryTest extends TestCase
+{
+
+    public function getFromJsonData(): iterable
+    {
+        foreach (scandir(__DIR__ . '/Payloads/TariffRestrictions/') as $filename) {
+            if ($filename !== '.' && $filename !== '..') {
+                yield $filename => [
+                    'payload' => file_get_contents(__DIR__ . '/Payloads/TariffRestrictions/' . $filename),
+                ];
+            }
+        }
+    }
+
+    /**
+     * @param string $payload
+     * @throws \JsonException
+     * @dataProvider getFromJsonData()
+     */
+    public function testFromJson(string $payload): void
+    {
+        $json = json_decode($payload, false, 512, JSON_THROW_ON_ERROR);
+
+        $tariffRestrictions = TariffRestrictionsFactory::fromJson($json);
+
+        self::assertTariffRestrictions($json, $tariffRestrictions);
+    }
+
+    public static function assertTariffRestrictions(?stdClass $json, ?TariffRestrictions $tariffRestrictions): void
+    {
+        if($json === null){
+            Assert::assertNull($tariffRestrictions);
+        } else {
+            Assert::assertSame($json->start_time ?? null, $tariffRestrictions->getStartTime());
+            Assert::assertSame($json->end_time ?? null, $tariffRestrictions->getEndTime());
+            Assert::assertSame($json->start_date ?? null, $tariffRestrictions->getStartDate());
+            Assert::assertSame($json->end_date ?? null, $tariffRestrictions->getEndDate());
+            Assert::assertSame(($json->min_kwh ?? null) === null ? null : (float)$json->min_kwh, $tariffRestrictions->getMinKwh());
+            Assert::assertSame(($json->max_kwh ?? null) === null ? null : (float)$json->max_kwh, $tariffRestrictions->getMaxKwh());
+            Assert::assertSame(($json->min_current ?? null) === null ? null : (float)$json->min_kwh, $tariffRestrictions->getMinCurrent());
+            Assert::assertSame(($json->max_current ?? null) === null ? null : (float)$json->max_kwh, $tariffRestrictions->getMaxCurrent());
+            Assert::assertSame(($json->min_power ?? null) === null ? null : (float)$json->min_power, $tariffRestrictions->getMinPower());
+            Assert::assertSame(($json->max_power ?? null) === null ? null : (float)$json->max_power, $tariffRestrictions->getMaxPower());
+            Assert::assertSame(($json->min_duration ?? null) === null ? null : (int)$json->min_duration, $tariffRestrictions->getMinDuration());
+            Assert::assertSame(($json->max_duration ?? null) === null ? null : (int)$json->max_duration, $tariffRestrictions->getMaxDuration());
+
+            if (property_exists($json, 'day_of_week')) {
+                foreach ($tariffRestrictions->getDaysOfWeek() as $index => $dayOfWeek) {
+                    Assert::assertSame($json->day_of_week[$index], $dayOfWeek->getValue());
+                }
+            } else {
+                Assert::assertEquals([], $tariffRestrictions->getDaysOfWeek());
+            }
+            if (property_exists($json, 'reservation')) {
+                Assert::assertSame($json->reservation ?? null, $tariffRestrictions->getReservation()->getValue());
+            } else {
+                Assert::assertNull($tariffRestrictions->getReservation());
+            }
+        }
+    }
+}

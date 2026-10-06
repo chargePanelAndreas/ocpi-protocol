@@ -1,0 +1,97 @@
+{
+  "id": "B1",
+  "country_code": "NL",
+  "party_id": "CPO",
+  "request_id": "req1",
+  "booking_option": {
+    "evse_uid": "evse1",
+    "connector_id": "1",
+    "evse_position": [
+      "LEFT"
+    ],
+    "vehicle_types": [
+      "PERSONAL_VEHICLE",
+      "FUTURE_VEHICLE"
+    ],
+    "connector_types": [
+      "IEC_62196_T2",
+      "SAE_J3400"
+    ],
+    "power_types": [
+      "AC_3_PHASE"
+    ],
+    "max_vehicle_weight": 3500.5
+  },
+  "location_id": "LOC1",
+  "booking_tokens": [
+    {
+      "country_code": "FR",
+      "party_id": "ABC",
+      "uid": "UID1",
+      "type": "EMAID",
+      "contract_id": "FRABC123"
+    }
+  ],
+  "tariff_ids": [
+    "T1"
+  ],
+  "period": {
+    "start_date_time": "2026-01-01T10:00:00.000Z",
+    "end_date_time": "2026-01-01T11:00:00.000Z",
+    "min_power": 3700,
+    "max_power": 11000,
+    "green_energy_support": true
+  },
+  "reservation_status": "RESERVED",
+  "canceled": {
+    "cancellation_reason": "TRAFFIC",
+    "who_canceled": "EMSP"
+  },
+  "authorization_reference": "auth1",
+  "booking_terms": {
+    "rfid_auth_required": false,
+    "supported_access_methods": [
+      "OPEN",
+      "TOKEN"
+    ],
+    "change_until_minutes": 30,
+    "cancel_until_minutes": 60,
+    "noshow_fee": true,
+    "booking_terms": "https://example.org/terms"
+  },
+  "booking_requests": [
+    {
+      "request_status": "ACCEPTED",
+      "booking_request": {
+        "country_code": "FR",
+        "party_id": "ABC",
+        "request_id": "req1",
+        "location_id": "LOC1",
+        "booking_location_id": "BL1",
+        "tokens": [
+          {
+            "country_code": "FR",
+            "party_id": "ABC",
+            "uid": "UID1",
+            "type": "EMAID",
+            "contract_id": "FRABC123"
+          }
+        ],
+        "access_information": [
+          {
+            "method": "LICENSE_PLATE",
+            "value": "ABC12D"
+          }
+        ],
+        "period": {
+          "start_date_time": "2026-01-01T10:00:00.000Z",
+          "end_date_time": "2026-01-01T11:00:00.000Z"
+        },
+        "authorization_reference": "auth1",
+        "power_required": 11
+      },
+      "request_received": "2026-01-01T10:00:00.000Z"
+    }
+  ],
+  "last_updated": "2026-01-01T10:00:00.000Z"
+}

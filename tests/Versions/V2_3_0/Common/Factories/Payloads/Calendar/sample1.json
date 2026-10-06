@@ -1,0 +1,16 @@
+{
+  "id": "C1",
+  "begin_from": "2026-01-01T10:00:00.000Z",
+  "end_before": "2026-01-02T10:00:00.000Z",
+  "timeslot_increment": 15,
+  "available_timeslots": [
+    {
+      "start_date_time": "2026-01-01T10:00:00.000Z",
+      "end_date_time": "2026-01-01T11:00:00.000Z",
+      "min_power": 3700,
+      "max_power": 11000,
+      "green_energy_support": true
+    }
+  ],
+  "last_updated": "2026-01-01T10:00:00.000Z"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "P1",
+  "physical_reference": "12",
+  "vehicle_types": [
+    "VAN",
+    "HOVERCRAFT"
+  ],
+  "max_vehicle_weight": 3500.0,
+  "direction": "ANGLE",
+  "drive_through": true,
+  "restricted_to_type": false,
+  "reservation_required": true,
+  "time_limit": 120,
+  "roofed": true,
+  "images": [
+    {
+      "url": "https://example.org/img.png",
+      "category": "LOCATION",
+      "type": "png"
+    }
+  ],
+  "standards": [
+    "PAS 1899"
+  ],
+  "apds_reference": "apds:1"
+}

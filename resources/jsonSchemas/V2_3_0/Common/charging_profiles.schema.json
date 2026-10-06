@@ -1,0 +1,185 @@
+{
+    "title": "V2.3.0\\Common\\ChargingProfiles",
+    "definitions": {
+        "set_charging_profile": {
+            "type": "object",
+            "properties": {
+                "charging_profile": {
+                    "$ref": "#/definitions/charging_profile"
+                },
+                "response_url": {
+                    "type": "string",
+                    "minLength": 1,
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "charging_profile",
+                "response_url"
+            ],
+            "additionalProperties": false
+        },
+        "charging_profile_response": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/definitions/charging_profile_response_type"
+                },
+                "timeout": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "result",
+                "timeout"
+            ],
+            "additionalProperties": false
+        },
+        "active_charging_profile_result": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/definitions/charging_profile_result_type"
+                },
+                "profile": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/definitions/active_charging_profile"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "result"
+            ],
+            "additionalProperties": false
+        },
+        "charging_profile_result": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/definitions/charging_profile_result_type"
+                }
+            },
+            "required": [
+                "result"
+            ],
+            "additionalProperties": false
+        },
+        "clear_profile_result": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/definitions/charging_profile_result_type"
+                }
+            },
+            "required": [
+                "result"
+            ],
+            "additionalProperties": false
+        },
+        "active_charging_profile": {
+            "type": "object",
+            "properties": {
+                "start_date_time": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
+                },
+                "charging_profile": {
+                    "$ref": "#/definitions/charging_profile"
+                }
+            },
+            "required": [
+                "start_date_time",
+                "charging_profile"
+            ],
+            "additionalProperties": false
+        },
+        "charging_profile": {
+            "type": "object",
+            "properties": {
+                "start_date_time": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "common.schema.json#/definitions/timestamp"
+                        }
+                    ]
+                },
+                "duration": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "charging_rate_unit": {
+                    "$ref": "#/definitions/charging_rate_unit"
+                },
+                "min_charging_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "charging_profile_period": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/charging_profile_period"
+                    }
+                }
+            },
+            "required": [
+                "charging_rate_unit"
+            ],
+            "additionalProperties": false
+        },
+        "charging_profile_period": {
+            "type": "object",
+            "properties": {
+                "start_period": {
+                    "type": "integer"
+                },
+                "limit": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "start_period",
+                "limit"
+            ],
+            "additionalProperties": false
+        },
+        "charging_rate_unit": {
+            "type": "string",
+            "enum": [
+                "W",
+                "A"
+            ]
+        },
+        "charging_profile_response_type": {
+            "type": "string",
+            "enum": [
+                "ACCEPTED",
+                "NOT_SUPPORTED",
+                "REJECTED",
+                "TOO_OFTEN",
+                "UNKNOWN_SESSION"
+            ]
+        },
+        "charging_profile_result_type": {
+            "type": "string",
+            "enum": [
+                "ACCEPTED",
+                "REJECTED",
+                "UNKNOWN"
+            ]
+        }
+    }
+}

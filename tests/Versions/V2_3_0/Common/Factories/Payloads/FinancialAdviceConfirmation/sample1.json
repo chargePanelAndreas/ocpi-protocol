@@ -1,0 +1,21 @@
+{
+  "id": "FAC1",
+  "authorization_reference": "auth1",
+  "total_costs": {
+    "before_taxes": 10.0,
+    "taxes": [
+      {
+        "name": "VAT",
+        "percentage": 21,
+        "amount": 2.1
+      }
+    ]
+  },
+  "currency": "EUR",
+  "eft_data": [
+    "data1"
+  ],
+  "capture_status_code": "SUCCESS",
+  "capture_status_message": "ok",
+  "last_updated": "2026-01-01T10:00:00.000Z"
+}

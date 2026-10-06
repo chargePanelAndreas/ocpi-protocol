@@ -1,0 +1,8 @@
+{
+    "title": "V2.3.0\\Receiver\\Bookings\\Booking\\Put",
+    "oneOf": [
+        {
+            "$ref": "../../Common/bookings.schema.json#/definitions/booking"
+        }
+    ]
+}

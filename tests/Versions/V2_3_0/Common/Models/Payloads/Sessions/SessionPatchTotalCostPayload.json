@@ -1,0 +1,11 @@
+{
+  "total_cost": {
+    "before_taxes": 50.4,
+    "taxes": [
+      {
+        "name": "VAT",
+        "amount": 0.8
+      }
+    ]
+  }
+}

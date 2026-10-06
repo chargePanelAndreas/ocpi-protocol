@@ -1,0 +1,21 @@
+{
+    "title": "V2.3.0\\Receiver\\Locations\\Put",
+    "oneOf": [
+        {
+            "$ref": "../../Common/location.schema.json",
+            "required": [
+                "country_code",
+                "party_id",
+                "id",
+                "publish",
+                "address",
+                "city",
+                "country",
+                "coordinates",
+                "time_zone",
+                "last_updated"
+            ],
+            "additionalProperties": false
+        }
+    ]
+}

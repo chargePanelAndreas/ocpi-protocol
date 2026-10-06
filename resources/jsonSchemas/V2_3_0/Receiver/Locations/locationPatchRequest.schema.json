@@ -1,0 +1,13 @@
+{
+    "title": "V2.3.0\\Receiver\\Locations\\Patch",
+    "oneOf": [
+        {
+            "$ref": "../../Common/location.schema.json",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "required": [
+                "last_updated"
+            ]
+        }
+    ]
+}
