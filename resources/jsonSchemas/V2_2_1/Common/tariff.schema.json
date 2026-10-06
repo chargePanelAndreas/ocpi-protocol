@@ -241,6 +241,7 @@
                               "null"
                             ],
                             "enum": [
+                                null,
                                 "RESERVATION",
                                 "RESERVATION_EXPIRES"
                             ]
