@@ -32,6 +32,7 @@ class TariffRestrictionsFactory
             $json->max_duration ?? null,
             $json->min_vehicle_soc ?? null,
             $json->min_congestion_threshold ?? null,
+            $json->max_congestion_threshold ?? null,
             isset($json->reservation) ? new ReservationRestrictionType($json->reservation) : null
         );
 

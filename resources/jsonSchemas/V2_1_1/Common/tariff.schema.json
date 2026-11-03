@@ -151,6 +151,27 @@
                             ],
                             "minimum": 0
                         },
+                        "max_congestion_threshold": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "min_congestion": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
+                        "max_congestion": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "minimum": 0
+                        },
                         "day_of_week": {
                             "type": [
                                 "array",
