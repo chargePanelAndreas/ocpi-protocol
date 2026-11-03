@@ -177,6 +177,22 @@
                 }
             ]
         },
+        "charging_accessibility": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "TESLA",
+                "ALL"
+            ]
+        },
+        "virtual_queue_enabled": {
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
         "last_updated": {
             "$ref": "common.schema.json#/definitions/timestamp"
         }

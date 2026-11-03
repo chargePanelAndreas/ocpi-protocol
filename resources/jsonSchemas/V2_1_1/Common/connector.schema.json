@@ -58,6 +58,9 @@
         "amperage": {
             "type": "integer"
         },
+        "max_electric_power": {
+          "type": "integer"
+        },
         "tariff_id": {
             "type": [
                 "string",
