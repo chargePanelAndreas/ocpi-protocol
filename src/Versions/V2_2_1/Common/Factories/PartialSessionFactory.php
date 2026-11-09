@@ -68,6 +68,12 @@ class PartialSessionFactory
         if (property_exists($json, 'status')) {
             $session->withStatus(new SessionStatus($json->status));
         }
+        if (property_exists($json, 'state_of_charge')) {
+            $session->withStateOfCharge($json->state_of_charge);
+        }
+        if (property_exists($json, 'charging_ended_at')) {
+            $session->withChargingEndedAt(new DateTime($json->charging_ended_at));
+        }
         if (property_exists($json, 'last_updated')) {
             $session->withLastUpdated(new DateTime($json->last_updated));
         }

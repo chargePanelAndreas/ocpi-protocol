@@ -111,6 +111,12 @@
                 "CONGESTED"
             ]
         },
+        "state_of_charge": {
+            "type": "number"
+        },
+        "charging_ended_at": {
+            "$ref": "common.schema.json#/definitions/timestamp"
+        },
         "last_updated": {
             "$ref": "common.schema.json#/definitions/timestamp"
         }
