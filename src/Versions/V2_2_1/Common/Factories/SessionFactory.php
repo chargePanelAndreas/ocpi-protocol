@@ -38,6 +38,12 @@ class SessionFactory
             new DateTime($json->last_updated)
         );
 
+        if (property_exists($json, 'state_of_charge')) {
+            $session->setStateOfCharge($json->state_of_charge);
+        }
+        if (property_exists($json, 'charging_ended_at')) {
+            $session->setChargingEndedAt(new DateTime($json->charging_ended_at));
+        }
         if (property_exists($json, 'charging_periods')) {
             foreach ((array)ChargingPeriodFactory::arrayFromJsonArray($json->charging_periods) as $chargingPeriod) {
                 $session->addChargingPeriod($chargingPeriod);

@@ -29,6 +29,8 @@ class Session implements JsonSerializable
     private ?Price $totalCost;
     private SessionStatus $status;
     private DateTime $lastUpdated;
+    private ?float $stateOfCharge = null;
+    private ?DateTime $chargingEndedAt = null;
 
     public function __construct(
         string $countryCode,
@@ -157,6 +159,22 @@ class Session implements JsonSerializable
         return $this->status;
     }
 
+    public function getStateOfCharge(): ?float
+    {
+        return $this->stateOfCharge;
+    }
+    public function setStateOfCharge(?float $stateOfCharge): void
+    {
+        $this->stateOfCharge = $stateOfCharge;
+    }
+    public function getChargingEndedAt(): ?DateTime
+    {
+        return $this->chargingEndedAt;
+    }
+    public function setChargingEndedAt(?DateTime $chargingEndedAt): void
+    {
+        $this->chargingEndedAt = $chargingEndedAt;
+    }
     public function getLastUpdated(): DateTime
     {
         return $this->lastUpdated;
@@ -183,6 +201,8 @@ class Session implements JsonSerializable
             $partialSession->hasStatus() ? $partialSession->getStatus() : $this->status,
             $partialSession->hasLastUpdated() ? $partialSession->getLastUpdated() : $this->lastUpdated
         );
+        $new->stateOfCharge = $partialSession->hasStateOfCharge() ? $partialSession->getStateOfCharge() : $this->stateOfCharge;
+        $new->chargingEndedAt = $partialSession->hasChargingEndedAt() ? $partialSession->getChargingEndedAt() : $this->chargingEndedAt;
         $chargingPeriods = $partialSession->hasChargingPeriods() ? $partialSession->getChargingPeriods() : $this->chargingPeriods;
         foreach ($chargingPeriods as $chargingPeriod) {
             $new->addChargingPeriod($chargingPeriod);
@@ -271,6 +291,18 @@ class Session implements JsonSerializable
         if ($this->lastUpdated->getTimestamp() !== $other->lastUpdated->getTimestamp()) {
             $diff = $diff ?? new PartialSession();
             $diff = $diff->withLastUpdated($other->lastUpdated);
+        }
+        if ($this->stateOfCharge !== $other->stateOfCharge) {
+            $diff = $diff ?? new PartialSession();
+            $diff = $diff->withStateOfCharge($other->stateOfCharge);
+        }
+        if (
+            ($this->chargingEndedAt === null) !== ($other->chargingEndedAt === null) ||
+            ($this->chargingEndedAt !== null && $other->chargingEndedAt !== null &&
+                $this->chargingEndedAt->getTimestamp() !== $other->chargingEndedAt->getTimestamp())
+        ) {
+            $diff = $diff ?? new PartialSession();
+            $diff = $diff->withChargingEndedAt($other->chargingEndedAt);
         }
         $chargingPeriodsDiff = self::chargingPeriodsDiff($this, $other);
         if ($chargingPeriodsDiff !== null) {

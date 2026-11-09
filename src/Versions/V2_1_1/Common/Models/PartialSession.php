@@ -23,6 +23,8 @@ use JsonSerializable;
  * @method bool hasTotalCost()
  * @method bool hasStatus()
  * @method bool hasLastUpdated()
+ * @method bool hasStateOfCharge()
+ * @method bool hasChargingEndedAt()
  * @method self withId(?string $id)
  * @method self withStartDate(?DateTime $startDate)
  * @method self withEndDate(?DateTime $endDate)
@@ -36,6 +38,8 @@ use JsonSerializable;
  * @method self withTotalCost(?float $totalCost)
  * @method self withStatus(?SessionStatus $status)
  * @method self withLastUpdated(?DateTime $lastUpdated)
+ * @method self withStateOfCharge(?float $stateOfCharge)
+ * @method self withChargingEndedAt(?DateTime $chargingEndedAt)
  */
 class PartialSession extends PartialModel implements JsonSerializable
 {
@@ -53,6 +57,8 @@ class PartialSession extends PartialModel implements JsonSerializable
     private ?float $totalCost = null;
     private ?SessionStatus $status = null;
     private ?DateTime $lastUpdated = null;
+    private ?float $stateOfCharge = null;
+    private ?DateTime $chargingEndedAt = null;
 
     protected function _withId(?string $id): self
     {
@@ -198,6 +204,25 @@ class PartialSession extends PartialModel implements JsonSerializable
         return $this->status;
     }
 
+    protected function _withStateOfCharge(?float $stateOfCharge): self
+    {
+        $this->stateOfCharge = $stateOfCharge;
+        return $this;
+    }
+    protected function _withChargingEndedAt(?DateTime $chargingEndedAt): self
+    {
+        $this->chargingEndedAt = $chargingEndedAt;
+        return $this;
+    }
+
+    public function getStateOfCharge(): ?float
+    {
+        return $this->stateOfCharge;
+    }
+    public function getChargingEndedAt(): ?DateTime
+    {
+        return $this->chargingEndedAt;
+    }
     public function getLastUpdated(): ?DateTime
     {
         return $this->lastUpdated;
@@ -233,6 +258,12 @@ class PartialSession extends PartialModel implements JsonSerializable
         }
         if ($this->hasStatus()) {
             $return['status'] = $this->status;
+        }
+        if ($this->hasStateOfCharge()) {
+            $return['state_of_charge'] = $this->stateOfCharge;
+        }
+        if ($this->hasChargingEndedAt()) {
+            $return['charging_ended_at'] = $this->chargingEndedAt === null ? null : DateTimeFormatter::format($this->chargingEndedAt);
         }
         if ($this->hasLastUpdated()) {
             $return['last_updated'] = DateTimeFormatter::format($this->lastUpdated);
