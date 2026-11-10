@@ -95,6 +95,10 @@
         },
         "total_cost_incl_vat": {
           "type": "number"
+        },
+        "session_id": {
+          "type": "string",
+          "maxLength": 36
         }
     },
     "required": [
