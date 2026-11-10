@@ -92,6 +92,9 @@
         },
         "last_updated": {
             "$ref": "common.schema.json#/definitions/timestamp"
+        },
+        "total_cost_incl_vat": {
+          "type": "number"
         }
     },
     "required": [
